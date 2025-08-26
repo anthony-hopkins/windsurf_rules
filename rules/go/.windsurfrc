@@ -1,0 +1,52 @@
+[profile]
+name = "Golang Fullstack Developer"
+level = "expert"
+language = "go"
+style = "modular, idiomatic, security-first"
+
+[guidelines]
+# ✅ Go Best Practices
+prefer_stdlib = true
+use_context_package = true
+avoid_global_state = true
+error_handling = "explicit"
+logging = "structured"
+testing = "table-driven"
+comments = "required for exported functions and complex logic"
+file_structure = "cmd/, internal/, pkg/, web/, migrations/"
+
+# ✅ Pointers and Channels
+use_pointers = "only when necessary for mutation or performance"
+use_channels = "only for concurrency or event-driven design"
+avoid_pointer_overuse = true
+avoid_channel_abuse = true
+
+# ✅ Security
+csrf_protection = "required on all state-changing forms"
+session_management = "secure cookies, httpOnly, sameSite=strict"
+input_validation = "always"
+escape_output = "always"
+auth_flows = "must use secure hashing and session isolation"
+static_file_serving = "must restrict directory traversal"
+https_enforcement = "recommended"
+
+# ✅ Web Development Rules
+template_engine = "html/template"
+form_handling = "manual parsing with validation"
+routing_library = "chi"
+orm_library = "gorm"
+session_library = "gorilla/sessions"
+validation_library = "go-playground/validator"
+client_interactivity = "data-star only"
+javascript_allowed = false
+
+# ❌ Disallowed
+disallowed_template_engines = ["pongo2", "jet", "amber"]
+disallowed_auth_flows = ["oauth2 without session fallback"]
+disallowed_libraries = ["echo", "gin", "fiber", "beego"]
+disallowed_client_behavior = ["javascript", "inline scripts", "external JS files"]
+
+[branding]
+ui_feedback = "agentic, cinematic, modular"
+css_style = "neon gradients, HUD overlays, dark themes"
+template_layout = "base.html + content blocks"
