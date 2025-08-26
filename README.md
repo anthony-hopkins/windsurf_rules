@@ -5,13 +5,21 @@ WindSurf is a powerful agentic AI coding assistant designed by the Windsurf engi
 ## 🚀 Features
 
 - Custom rules and configurations for WindSurf AI
-- Easy-to-manage rule sets
-- Seamless integration with your development workflow
+- Multi-language support (Go, Python)
+- Django project templates and best practices
+- Modern UI/UX guidelines with dark theme
+- HTMX integration patterns
 
 ## 📦 Prerequisites
 
 - A working installation of WindSurf AI
 - Basic understanding of YAML configuration files
+- For Python/Django projects:
+  - Python 3.10+
+  - Django
+  - pip (Python package manager)
+- For Go projects:
+  - Go 1.18+
 
 ## 🛠️ Installation
 
@@ -37,14 +45,33 @@ To verify your configuration is being loaded, you can check the WindSurf logs fo
 
 ## 🔧 Configuration
 
-The main configuration file is located at `~/.config/windsurf/config.yaml`. This file contains various settings that control WindSurf's behavior, including:
+### Python/Django Configuration
+For Python and Django development, we provide comprehensive rules and best practices in [rules/python/.windsurfrules](rules/python/.windsurfrules) that include:
 
+- **Project Setup**:
+  - Python 3.10+ with virtual environment support
+  - Django project structure and best practices
+  - Security middleware and CSRF protection
+
+- **Development Tools**:
+  - Code formatting with Black (88 char line length)
+  - Linting with Flake8
+  - HTMX integration (preferred over JavaScript)
+
+- **UI/UX Standards**:
+  - Dark theme with gradient backgrounds
+  - Modern CSS with rounded corners
+  - Minimal JavaScript usage
+
+### Go Configuration
+For Go development rules and configuration, refer to [rules/go/.windsurfrc](rules/go/.windsurfrc).
+
+### Global Configuration
+The main configuration file is located at `~/.config/windsurf/config.yaml` and controls WindSurf's behavior including:
 - Code style preferences
 - Language-specific rules
 - Custom commands and shortcuts
 - Integration settings
-
-For advanced configuration options, refer to the [rules/go/.windsurfrc](rules/go/.windsurfrc) file in this repository.
 
 ## 🤝 Contributing
 
