@@ -1,0 +1,100 @@
+# Hopkinetic Windsurf Rules — Enforced Standards for Django/HTMX Projects
+# This file defines global rules for all projects using Windsurf IDE
+# It enforces PEP8, security best practices, and branded UI/UX constraints
+
+rules:
+  python:
+    version: "3.10+"
+    enforce_pep8: true
+    linting:
+      tool: "flake8"
+      config:
+        max-line-length: 88
+        ignore:
+          - E203  # Whitespace before ':'
+          - W503  # Line break before binary operator
+    formatting:
+      tool: "black"
+      config:
+        line-length: 88
+        target-version: ["py310"]
+    comments:
+      enforce: true
+      style: "thorough"
+      rationale: "Explain what and why, not just how"
+
+  django:
+    enforce_csrf: true
+    template_engine: "django"
+    frontend_stack: ["django-templates", "htmx"]
+    project_creation:
+      command: "django-admin startproject <project_name> ."
+    virtualenv:
+      command: "python -m venv venv"
+    security:
+      best_practices: true
+      middleware:
+        required:
+          - "django.middleware.csrf.CsrfViewMiddleware"
+          - "django.middleware.security.SecurityMiddleware"
+
+  htmx:
+    usage:
+      allowed: true
+      preferred_over_js: true
+    javascript:
+      allow_only_if_essential: true
+      typescript:
+        allow_only_if_essential: true
+
+  css:
+    theme:
+      mode: "dark"
+      background: "linear-gradient(to bottom right, #0a0a0a, #1a1a1a)"
+      accent_color: "#FF0000"
+      rounded_corners: true
+      animations:
+        use_modern_css: true
+        avoid_js: true
+    styling:
+      enforce_modern: true
+      avoid_inline_styles: true
+
+  git:
+    gitignore:
+      enforce: true
+      template:
+        - "__pycache__/"
+        - "*.sqlite3"
+        - "venv/"
+        - "*.log"
+        - "*.env"
+        - "*.db"
+        - "*.DS_Store"
+
+  documentation:
+    readme:
+      enforce_single_file: true
+      update_on_change: true
+      format: "markdown"
+      location: "root"
+      initial_content:
+        title: "Hopkinetic Django Project"
+        description: "Modular, branded dashboard using Django, HTMX, and modern CSS"
+        setup_instructions:
+          - "Create virtual environment: `python -m venv venv`"
+          - "Start Django project in current directory: `django-admin startproject <project_name> .`"
+          - "Activate dark theme and accent color in base template"
+        branding_notes:
+          - "Accent color: #FF0000"
+          - "Rounded buttons and borders"
+          - "No JS unless absolutely necessary"
+
+  development:
+    style:
+      prefer_verbose_over_shorthand: true
+      optimize_for_readability: true
+      avoid_confusing_abbreviations: true
+    file_changes:
+      restrict_to_request_scope: true
+      avoid_unrelated_edits: true
