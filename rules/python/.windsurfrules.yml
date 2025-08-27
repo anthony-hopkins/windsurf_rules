@@ -1,0 +1,124 @@
+rules:
+  python:
+    version: "3.10+"
+    enforce_pep8: true
+    linting:
+      tool: "flake8"
+      config:
+        max-line-length: 88
+        ignore:
+          - E203  # Allow spacing before ':' for slicing
+          - W503  # Allow line breaks before binary operators
+    formatting:
+      tool: "black"
+      config:
+        line-length: 88
+        target-version: ["py310"]
+    comments:
+      enforce: true
+      style: "thorough"
+      rationale: "Explain what and why, not just how"
+
+  django:
+    enforce_csrf: true
+    template_engine: "django"
+    frontend_stack: ["django-templates", "javascript"]  # HTMX removed; JS is now the default
+    project_creation:
+      command: "django-admin startproject <project_name> ."
+    virtualenv:
+      command: "python -m venv venv"
+    security:
+      best_practices: true
+      middleware:
+        required:
+          - "django.middleware.csrf.CsrfViewMiddleware"
+          - "django.middleware.security.SecurityMiddleware"
+
+  javascript:
+    usage:
+      enforced: true
+      replace_htmx: true
+      principles:
+        - "Use modular, reusable functions"
+        - "Avoid inline event handlers; prefer addEventListener"
+        - "Minimize global scope pollution"
+        - "Prefer const and let over var"
+        - "Use arrow functions where appropriate"
+        - "Separate logic from presentation"
+        - "Avoid unnecessary libraries; prefer native APIs"
+        - "Validate all user input before processing"
+        - "Use semantic HTML with ARIA roles"
+    comments:
+      enforce: true
+      style: "thorough"
+      rules:
+        - "Every function must have a descriptive block comment"
+        - "Inline comments required for conditionals, loops, and DOM manipulation"
+        - "Comments must explain intent and rationale"
+        - "Avoid redundant or obvious comments"
+        - "Use consistent formatting across all JS files"
+    placement:
+      inline: "forbidden"  # Inline JS in HTML is strictly prohibited
+      static_directory_required: true  # All JS must reside in Django's static/ directory
+      auto_create_static_dir: true  # Create static/ directory if missing
+
+  css:
+    theme:
+      mode: "dark"
+      background: "#131920"  # AWS-style dark console background — DO NOT OVERRIDE
+      accent_color: "#FF0000"  # Hopkinetic red
+      rounded_corners: true
+      animations:
+        use_modern_css: true
+        avoid_js: true
+    styling:
+      enforce_modern: true
+      avoid_inline_styles: true  # Inline CSS in HTML is strictly prohibited
+      placement:
+        inline: "forbidden"  # DO NOT ALLOW inline styles under any circumstance
+        static_directory_required: true  # All CSS must reside in Django's static/ directory
+        auto_create_static_dir: true  # Create static/ directory if missing
+    branding:
+      enforce_aws_console_style: true  # 🔒 Enforce AWS-like visual identity — dark, minimal, utilitarian
+      rationale: "Styling must reflect AWS console aesthetics: #131920 background, minimal gradients, high contrast, and utilitarian layout. No exceptions."
+
+  git:
+    gitignore:
+      enforce: true
+      template:
+        - "__pycache__/"
+        - "*.sqlite3"
+        - "venv/"
+        - "*.log"
+        - "*.env"
+        - "*.db"
+        - "*.DS_Store"
+
+  documentation:
+    readme:
+      enforce_single_file: true
+      update_on_change: true
+      format: "markdown"
+      location: "root"
+      initial_content:
+        title: "Hopkinetic Django Project"
+        description: "Modular, branded dashboard using Django, JavaScript, and AWS-style CSS"
+        setup_instructions:
+          - "Create virtual environment: `python -m venv venv`"
+          - "Start Django project in current directory: `django-admin startproject <project_name> .`"
+          - "Activate AWS-style dark theme and accent color in base template"
+        branding_notes:
+          - "Accent color: #FF0000"
+          - "Rounded buttons and borders"
+          - "Use clean, modular JavaScript for all interactivity"
+          - "**Never** use inline JS or CSS—always place in static/ directory"
+          - "**Enforce AWS-style appearance** — background #131920, utilitarian layout, no visual excess"
+
+  development:
+    style:
+      prefer_verbose_over_shorthand: true
+      optimize_for_readability: true
+      avoid_confusing_abbreviations: true
+    file_changes:
+      restrict_to_request_scope: true
+      avoid_unrelated_edits: true
