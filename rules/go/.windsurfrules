@@ -13,7 +13,7 @@ error_handling = "explicit"
 logging = "structured"
 testing = "table-driven"
 comments = "required for exported functions and complex logic"
-file_structure = "cmd/, internal/, pkg/, web/, migrations/"
+file_structure = "cmd/, internal/, pkg/, web/static/, migrations/"
 
 # ✅ Pointers and Channels
 use_pointers = "only when necessary for mutation or performance"
@@ -37,14 +37,17 @@ routing_library = "chi"
 orm_library = "gorm"
 session_library = "gorilla/sessions"
 validation_library = "go-playground/validator"
-client_interactivity = "data-star only"
-javascript_allowed = false
+
+# ✅ Modern JavaScript Support
+javascript_allowed = true
+javascript_placement = "static/js/"
+javascript_guidelines = "modular, es6+, no-jquery"
 
 # ❌ Disallowed
 disallowed_template_engines = ["pongo2", "jet", "amber"]
 disallowed_auth_flows = ["oauth2 without session fallback"]
 disallowed_libraries = ["echo", "gin", "fiber", "beego"]
-disallowed_client_behavior = ["javascript", "inline scripts", "external JS files"]
+disallowed_client_behavior = ["inline scripts"]
 
 [branding]
 ui_feedback = "agentic, cinematic, modular"
